@@ -946,6 +946,10 @@ int CXBMCRenderManager::AddVideoPicture(DVDVideoPicture& pic)
     m_pRenderer->AddProcessor(pic.stf, pic.eglimg, index);
 #endif
 
+#ifdef HAVE_LIBXVBA
+  else if(pic.format == RENDER_FMT_XVBA)
+    m_pRenderer->AddProcessor(pic.xvba, index);
+#endif
   m_pRenderer->ReleaseImage(index, false);
 
   return index;
