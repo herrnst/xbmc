@@ -460,6 +460,12 @@
           <default>true</default>
           <control type="toggle" />
         </setting>
+        <setting id="videoplayer.usexvba" type="boolean" label="13441" help="">
+          <visible>HAVE_LIBXVBA</visible>
+          <level>2</level>
+          <default>true</default>
+          <control type="toggle" />
+        </setting> 
         <setting id="videoplayer.usepbo" type="boolean" label="13424" help="36163">
           <requirement>HAS_GL</requirement>
           <level>4</level>
