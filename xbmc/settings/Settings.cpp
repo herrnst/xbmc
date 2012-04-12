@@ -919,6 +919,9 @@ void CSettings::InitializeConditions()
 #ifdef HAS_LIBSTAGEFRIGHT
   m_settingsManager->AddCondition("have_libstagefrightdecoder");
 #endif
+#ifdef HAVE_LIBXVBA
+  m_settingsManager->AddCondition("have_libxvba");
+#endif
 #ifdef HAVE_VIDEOTOOLBOXDECODER
   m_settingsManager->AddCondition("have_videotoolboxdecoder");
   if (g_sysinfo.HasVideoToolBoxDecoder())
