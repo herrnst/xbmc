@@ -748,6 +748,12 @@
           <default>true</default>
           <control type="toggle" />
         </setting>
+        <setting id="videoplayer.usexvba" type="boolean" label="13453" help="">
+          <visible>HAVE_LIBXVBA</visible>
+          <level>2</level>
+          <default>true</default>
+          <control type="toggle" />
+        </setting> 
       </group>
     </category>
     <category id="myvideos" label="14081" help="36601">
