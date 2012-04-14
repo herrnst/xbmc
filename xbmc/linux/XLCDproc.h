@@ -112,6 +112,7 @@ private:
   bool         m_used; //set to false when trying to connect has failed
 
   XLCDproc     *m_lcdprocIconDevice;
+  unsigned int m_iCharsetTab;
 };
 
 #endif
