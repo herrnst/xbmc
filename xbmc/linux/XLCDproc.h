@@ -45,10 +45,14 @@ public:
   bool         SendLCDd(const CStdString &command);
   void         ReadAndFlushSocket();
 
+  // Handlers for icon-handling sub-instances
+  void         HandleStop();
+
 protected:
   virtual void Process();
   virtual void SetLine(int iLine, const CStdString& strLine);
   bool         Connect();
+  void         RecognizeAndSetIconDriver();
   void         CloseSocket();
   unsigned int m_iColumns;        // display columns for each line
   unsigned int m_iRows;           // total number of rows
@@ -66,6 +70,8 @@ private:
   int          m_lastInitAttempt;
   int          m_initRetryInterval;
   bool         m_used; //set to false when trying to connect has failed
+
+  XLCDproc     *m_lcdprocIconDevice;
 };
 
 #endif
