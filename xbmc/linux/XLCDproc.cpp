@@ -49,6 +49,7 @@ XLCDproc::XLCDproc()
   m_initRetryInterval = INIT_RETRY_INTERVAL;
   m_used = true;
   m_lcdprocIconDevice = NULL;
+  m_iCharsetTab = LCD_CHARSET_TAB_HD44780;
 }
 
 XLCDproc::~XLCDproc()
@@ -282,6 +283,7 @@ void XLCDproc::RecognizeAndSetIconDriver()
       CLog::Log(LOGINFO, "XLCDproc::%s - Driver is: %s", __FUNCTION__,
           "SoundGraph iMON LCD driver");
       m_lcdprocIconDevice = new XLCDproc_imon();
+      m_iCharsetTab = LCD_CHARSET_TAB_IMONMDM;
       break;
     }
     else if (strstr(reply, driverStringMdm166a.c_str()) != NULL)
@@ -289,6 +291,7 @@ void XLCDproc::RecognizeAndSetIconDriver()
       CLog::Log(LOGINFO, "XLCDproc::%s - Driver is: %s", __FUNCTION__,
                 "Targa USB Graphic Vacuum Fluorescent Display (mdm166a)");
       m_lcdprocIconDevice = new XLCDproc_mdm166a();
+      m_iCharsetTab = LCD_CHARSET_TAB_IMONMDM;
       break;
     }
   }
@@ -441,7 +444,7 @@ void XLCDproc::SetLine(int iLine, const CStdString& strLine)
 
   CStdString strLineLong = strLine;
   strLineLong.Trim();
-  StringToLCDCharSet(strLineLong);
+  StringToLCDCharSet(strLineLong, m_iCharsetTab);
 
   //make string fit the display if it's smaller than the width
   if (strLineLong.size() < m_iColumns)
