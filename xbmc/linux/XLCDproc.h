@@ -46,6 +46,7 @@ public:
   void         ReadAndFlushSocket();
 
   // Handlers for icon-handling sub-instances
+  bool         SendIconStatesToDisplay();
   void         HandleStop();
 
 protected:
