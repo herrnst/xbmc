@@ -278,6 +278,15 @@ void CDecoder::Close()
 
 bool CDecoder::Open(AVCodecContext *avctx, enum PixelFormat fmt, unsigned int surfaces)
 {
+#ifdef HAVE_LIBXVBA
+  std::string Vendor = g_Windowing.GetRenderVendor();
+  std::transform(Vendor.begin(), Vendor.end(), Vendor.begin(), ::tolower);
+  if (Vendor.compare(0, 3, "ati") == 0)
+  {
+    return false;
+  }
+#endif
+
   // check if user wants to decode this format with VAAPI
   if (CDVDVideoCodec::IsCodecDisabled(g_vaapi_available, settings_count, avctx->codec_id))
     return false;
