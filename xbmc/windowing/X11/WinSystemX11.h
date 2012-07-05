@@ -67,6 +67,7 @@ public:
   GLXWindow GetWindow() { return m_glWindow; }
   GLXContext GetGlxContext() { return m_glContext; }
   void RefreshWindow();
+  void NotifyXRREvent();
 
 protected:
   bool RefreshGlxContext();
