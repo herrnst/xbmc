@@ -134,7 +134,6 @@ void XLCDproc::Initialize()
         m_bStop = true;
       }
     }
-    RecognizeAndSetIconDriver();
   }
   else
   {
@@ -386,7 +385,10 @@ void XLCDproc::SetContrast(int iContrast)
 void XLCDproc::Stop()
 {
   if (m_lcdprocIconDevice != NULL)
+  {
     m_lcdprocIconDevice->HandleStop();
+    ReadAndFlushSocket();
+  }
 
   CloseSocket();
   m_bStop = true;
@@ -488,6 +490,8 @@ bool XLCDproc::SendIconStatesToDisplay()
       CloseSocket();
       return false;
     }
+
+    ReadAndFlushSocket();
   }
 
   return true;
@@ -496,7 +500,10 @@ bool XLCDproc::SendIconStatesToDisplay()
 void XLCDproc::HandleStop(void)
 {
   if (m_lcdprocIconDevice != NULL)
+  {
     m_lcdprocIconDevice->HandleStop();
+    ReadAndFlushSocket();
+  }
 }
 
 void XLCDproc::SetIconMovie(bool on)
