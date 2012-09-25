@@ -1216,7 +1216,8 @@ void CLinuxRendererGL::Render(DWORD flags, int renderBuffer)
       break;
 
     case RQ_MULTIPASS:
-      RenderMultiPass(renderBuffer, m_currentField);
+      RenderToFBO(renderBuffer, m_currentField);
+      RenderFromFBO();
       VerifyGLState();
       break;
     }
@@ -1346,12 +1347,6 @@ void CLinuxRendererGL::RenderSinglePass(int index, int field)
   glMatrixMode(GL_MODELVIEW);
 
   VerifyGLState();
-}
-
-void CLinuxRendererGL::RenderMultiPass(int index, int field)
-{
-  RenderToFBO(index, field);
-  RenderFromFBO();
 }
 
 void CLinuxRendererGL::RenderToFBO(int index, int field)
