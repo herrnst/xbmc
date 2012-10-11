@@ -150,6 +150,8 @@ void CAdvancedSettings::Initialize()
   m_videoEnableHighQualityHwScalers = false;
   m_videoAutoScaleMaxFps = 30.0f;
   m_videoCaptureUseOcclusionQuery = -1; //-1 is auto detect
+  m_videoVDPAUdeintHD = -1;
+  m_videoVDPAUdeintSD = -1;
   m_videoVDPAUtelecine = false;
   m_videoVDPAUdeintSkipChromaHD = false;
   m_useFfmpegVda = true;
@@ -554,6 +556,8 @@ void CAdvancedSettings::ParseSettingsFile(const std::string &file)
     XMLUtils::GetBoolean(pElement,"enablehighqualityhwscalers", m_videoEnableHighQualityHwScalers);
     XMLUtils::GetFloat(pElement,"autoscalemaxfps",m_videoAutoScaleMaxFps, 0.0f, 1000.0f);
     XMLUtils::GetInt(pElement, "useocclusionquery", m_videoCaptureUseOcclusionQuery, -1, 1);
+    XMLUtils::GetInt(pElement,"vdpauHDdeint",m_videoVDPAUdeintHD);
+    XMLUtils::GetInt(pElement,"vdpauSDdeint",m_videoVDPAUdeintSD);
     XMLUtils::GetBoolean(pElement,"vdpauInvTelecine",m_videoVDPAUtelecine);
     XMLUtils::GetBoolean(pElement,"vdpauHDdeintSkipChroma",m_videoVDPAUdeintSkipChromaHD);
     XMLUtils::GetBoolean(pElement,"useffmpegvda", m_useFfmpegVda);
