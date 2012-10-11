@@ -2392,7 +2392,16 @@ bool CDVDPlayer::IsPaused() const
 
 bool CDVDPlayer::HasVideo() const
 {
-  return m_HasVideo;
+  bool hasVideo(false);
+
+  if (m_pInputStream && m_pInputStream->IsStreamType(DVDSTREAM_TYPE_DVD))
+    hasVideo = true;
+  else if (m_SelectionStreams.Count(STREAM_VIDEO) > 0)
+    hasVideo = true;
+  else if (g_renderManager.IsConfigured())
+    hasVideo = true;
+
+  return hasVideo;
 }
 
 bool CDVDPlayer::HasAudio() const
