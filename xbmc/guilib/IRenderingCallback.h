@@ -1,4 +1,5 @@
 #pragma once
+
 /*
  *      Copyright (C) 2005-2012 Team XBMC
  *      http://www.xbmc.org
@@ -19,20 +20,11 @@
  *
  */
 
-#include "GUIRenderingControl.h"
-#include "addons/IAddon.h"
-
-class CGUIVisualisationControl : public CGUIRenderingControl
+class IRenderingCallback
 {
 public:
-  CGUIVisualisationControl(int parentID, int controlID, float posX, float posY, float width, float height);
-  CGUIVisualisationControl(const CGUIVisualisationControl &from);
-  virtual CGUIVisualisationControl *Clone() const { return new CGUIVisualisationControl(*this); }; //TODO check for naughties
-  virtual void FreeResources(bool immediately = false);
-  virtual void Process(unsigned int currentTime, CDirtyRegionList &dirtyregions);
-  virtual bool OnAction(const CAction &action);
-  virtual bool OnMessage(CGUIMessage &message);
-private:
-  bool m_bAttemptedLoad;
-  ADDON::VizPtr m_addon;
+  virtual bool Create(int x, int y, int w, int h, void *device) = 0;
+  virtual void Render() = 0;
+  virtual void Stop() = 0;
+  virtual bool IsDirty() { return true; }
 };
