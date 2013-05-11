@@ -68,7 +68,7 @@ public:
   Display*  GetDisplay() { return m_dpy; }
   GLXWindow GetWindow() { return m_glWindow; }
   GLXContext GetGlxContext() { return m_glContext; }
-  void NotifyXRREvent();
+  void NotifyXRREvent(bool poll = false);
   void GetConnectedOutputs(std::vector<CStdString> *outputs);
   bool IsCurrentOutput(CStdString output);
   void NotifyMouseCoverage(bool covered);
@@ -98,6 +98,7 @@ protected:
   bool                         m_windowDirty;
   bool                         m_bIsInternalXrr;
   bool                         m_newGlContext;
+  bool                         m_ignoreOutputSetToOff;
 
 private:
   bool IsSuitableVisual(XVisualInfo *vInfo);
