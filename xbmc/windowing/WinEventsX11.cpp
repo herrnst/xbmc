@@ -399,7 +399,7 @@ bool CWinEventsX11::MessagePump()
         {
           static XComposeStatus state;
           char keybuf[32];
-          xkeysym = XLookupKeysym(&xevent.xkey, 0);
+          XLookupString(&xevent.xkey, NULL, 0, &xkeysym, NULL);
           newEvent.key.keysym.sym = LookupXbmcKeySym(xkeysym);
           newEvent.key.keysym.scancode = xevent.xkey.keycode;
           newEvent.key.state = xevent.xkey.state;
