@@ -73,6 +73,7 @@
 <keymap>
   <global>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -166,6 +167,7 @@
   </global>
   <Home>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -199,6 +201,7 @@
   </Home>
   <MyFiles>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -232,6 +235,7 @@
   </MyFiles>
   <MyMusicPlaylist>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -269,6 +273,7 @@
   </MyMusicLibrary>
   <FullscreenVideo>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -351,6 +356,7 @@
   </FullscreenVideo>
   <FullscreenLiveTV>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -398,6 +404,7 @@
   </FullscreenLiveTV>
   <FullscreenInfo>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -439,6 +446,7 @@
   </FullscreenInfo>
   <PlayerControls>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -476,6 +484,7 @@
   </PlayerControls>
   <Visualisation>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -539,6 +548,7 @@
   </Visualisation>
   <MusicOSD>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -574,6 +584,7 @@
   </MusicOSD>
   <VisualisationSettings>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -607,6 +618,7 @@
   </VisualisationSettings>
   <VisualisationPresetList>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -640,6 +652,7 @@
   </VisualisationPresetList>
   <SlideShow>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -705,6 +718,7 @@
   </SlideShow>
   <ScreenCalibration>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -742,6 +756,7 @@
   </ScreenCalibration>
   <GUICalibration>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -779,6 +794,7 @@
   </GUICalibration>
   <VideoOSD>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -812,6 +828,7 @@
   </VideoOSD>
   <VideoMenu>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -851,6 +868,7 @@
   </VideoMenu>
   <OSDVideoSettings>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -886,6 +904,7 @@
   </OSDVideoSettings>
   <OSDAudioSettings>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -921,6 +940,7 @@
   </OSDAudioSettings>
   <VideoBookmarks>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -958,6 +978,7 @@
   </MyVideoFiles>
   <MyVideoPlaylist>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -991,6 +1012,7 @@
   </MyVideoPlaylist>
   <VirtualKeyboard>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1034,6 +1056,7 @@
   </VirtualKeyboard>
   <ContextMenu>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1069,6 +1092,7 @@
   </ContextMenu>
   <Scripts>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1102,6 +1126,7 @@
   </Scripts>
   <Settings>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1135,6 +1160,7 @@
   </Settings>
   <AddonInformation>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1168,6 +1194,7 @@
   </AddonInformation>
   <AddonSettings>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1201,6 +1228,7 @@
   </AddonSettings>
   <TextViewer>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1234,6 +1262,7 @@
   </TextViewer>
   <shutdownmenu>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1269,6 +1298,7 @@
   </shutdownmenu>
   <submenu>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1302,6 +1332,7 @@
   </submenu>
   <MusicInformation>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1335,6 +1366,7 @@
   </MusicInformation>
   <MovieInformation>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1368,6 +1400,7 @@
   </MovieInformation>
   <NumericInput>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1403,6 +1436,7 @@
   </NumericInput>
   <GamepadInput>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1436,6 +1470,7 @@
   </GamepadInput>
   <LockSettings>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
@@ -1471,6 +1506,7 @@
   </LockSettings>
   <ProfileSettings>
     <joystick name="Controller (XBOX 360 For Windows)">
+      <altname>XBMC-Compatible XInput Controller</altname>
       <altname>Afterglow Gamepad for Xbox 360 (Controller)</altname>
       <altname>Controller (Gamepad F310)</altname>
       <altname>Controller (Gamepad for Xbox 360)</altname>
