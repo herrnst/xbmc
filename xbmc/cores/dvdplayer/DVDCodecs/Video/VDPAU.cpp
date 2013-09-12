@@ -288,6 +288,8 @@ void CDecoder::OnLostDevice()
 {
   CLog::Log(LOGNOTICE,"CVDPAU::OnLostDevice event");
 
+  int count = g_graphicsContext.exit();
+
   CSingleLock lock(m_DecoderSection);
   FiniVDPAUOutput();
   FiniVDPAUProcs();
@@ -295,11 +297,15 @@ void CDecoder::OnLostDevice()
   m_DisplayState = VDPAU_LOST;
   lock.Leave();
   m_DisplayEvent.Reset();
+
+  g_graphicsContext.restore(count);
 }
 
 void CDecoder::OnResetDevice()
 {
   CLog::Log(LOGNOTICE,"CVDPAU::OnResetDevice event");
+
+  int count = g_graphicsContext.exit();
 
   CSingleLock lock(m_DecoderSection);
   if (m_DisplayState == VDPAU_LOST)
@@ -308,6 +314,8 @@ void CDecoder::OnResetDevice()
     lock.Leave();
     m_DisplayEvent.Set();
   }
+
+  g_graphicsContext.restore(count);
 }
 
 int CDecoder::Check(AVCodecContext* avctx)
