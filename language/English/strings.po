@@ -417,6 +417,7 @@ msgid "Update failed"
 msgstr ""
 
 #: xbmc/addons/addoninstaller.cpp
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
 msgctxt "#114"
 msgid "Installation failed"
 msgstr ""
@@ -3559,6 +3560,7 @@ msgctxt "#1222"
 msgid "Music & video & pictures & files"
 msgstr ""
 
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
 msgctxt "#1223"
 msgid "Disabled"
 msgstr ""
@@ -5385,6 +5387,7 @@ msgctxt "#13328"
 msgid "%s not found"
 msgstr ""
 
+#: xbmc/cores/RetroPlayer/RetroPlayer.cpp
 msgctxt "#13329"
 msgid "Error opening %s"
 msgstr ""
@@ -6689,7 +6692,10 @@ msgctxt "#16022"
 msgid "Bob (inverted)"
 msgstr ""
 
-#empty string with id 16023
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
+msgctxt "#16023"
+msgid "No compatible emulators found for file:"
+msgstr ""
 
 #: xbmc/dialogs/GUIDialogProgress.cpp
 msgctxt "#16024"
@@ -6700,6 +6706,7 @@ msgctxt "#16025"
 msgid "Enter the artist name"
 msgstr ""
 
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
 msgctxt "#16026"
 msgid "Playback failed"
 msgstr ""
@@ -6712,6 +6719,7 @@ msgctxt "#16028"
 msgid "Enter value"
 msgstr ""
 
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
 msgctxt "#16029"
 msgid "Check the log file for details."
 msgstr ""
@@ -11435,12 +11443,16 @@ msgid "Emulators"
 msgstr ""
 
 #: system/settings/settings.xml
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
 #: xbmc/games/GameFileAutoLauncher.cpp
 msgctxt "#24025"
 msgid "Manage emulators..."
 msgstr ""
 
-#empty string with id 24026
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
+msgctxt "#24026"
+msgid "Install emulator"
+msgstr ""
 
 #: xbmc/addons/addon.cpp
 msgctxt "#24027"
@@ -11546,7 +11558,10 @@ msgctxt "#24048"
 msgid "Rollback"
 msgstr ""
 
-#empty string with id 24049
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
+msgctxt "#24049"
+msgid "Add-on manager"
+msgstr ""
 
 msgctxt "#24050"
 msgid "Available Add-ons"
@@ -11629,6 +11644,7 @@ msgctxt "#24070"
 msgid "Add-on could not be loaded."
 msgstr ""
 
+#: xbmc/cores/RetroPlayer/RetroPlayerDialogs.cpp
 msgctxt "#24071"
 msgid "An unknown error has occurred."
 msgstr ""
