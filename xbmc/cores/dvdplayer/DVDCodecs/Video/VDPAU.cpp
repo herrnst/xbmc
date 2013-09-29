@@ -2308,7 +2308,9 @@ void CMixer::InitCycle()
 
 void CMixer::FiniCycle()
 {
-  while (m_mixerInput.size() > 3)
+  // Keep video surfaces for one cycle longer than used
+  // by mixer. This avoids blocking in decoder.
+  while (m_mixerInput.size() > 4)
   {
     CVdpauDecodedPicture &tmp = m_mixerInput.back();
     if (m_processPicture.DVDPic.format != RENDER_FMT_VDPAU_420)
