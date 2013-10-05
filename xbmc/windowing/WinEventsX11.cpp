@@ -40,10 +40,6 @@
 #include <X11/extensions/Xrandr.h>
 #endif
 
-#ifdef HAS_SDL_JOYSTICK
-#include "input/SDLJoystick.h"
-#endif
-
 CWinEventsX11Imp* CWinEventsX11Imp::WinEvents = 0;
 
 static uint32_t SymMappingsX11[][2] =
@@ -600,28 +596,6 @@ bool CWinEventsX11Imp::MessagePump()
   {
     g_Windowing.NotifyXRREvent(true);
     WinEvents->m_xrrPollTimer.Set(3000);
-  }
-#endif
-
-#ifdef HAS_SDL_JOYSTICK
-  SDL_Event event;
-  while (SDL_PollEvent(&event))
-  {
-    switch(event.type)
-    {
-      case SDL_JOYBUTTONUP:
-      case SDL_JOYBUTTONDOWN:
-      case SDL_JOYAXISMOTION:
-      case SDL_JOYBALLMOTION:
-      case SDL_JOYHATMOTION:
-        g_Joystick.Update(event);
-        ret = true;
-        break;
-
-      default:
-        break;
-    }
-    memset(&event, 0, sizeof(SDL_Event));
   }
 #endif
 
