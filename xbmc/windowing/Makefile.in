@@ -2,7 +2,8 @@ SRCS=WinEventsSDL.cpp \
      WinEventsLinux.cpp \
      WinEventsWayland.cpp \
      WinSystem.cpp \
-     WinEvents.cpp
+     WinEvents.cpp \
+     WinEventsX11.cpp
 
 # Wayland implementation detail
 ifeq (@USE_WAYLAND@,1)
