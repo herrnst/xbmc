@@ -12855,12 +12855,7 @@ msgctxt "#35102"
 msgid "Disable joystick when this device is present"
 msgstr ""
 
-#: system/settings/settings.xml
-msgctxt "#35103"
-msgid "Enable system keys in fullscreen"
-msgstr ""
-
-#empty strings from id 35104 to 35499
+#empty strings from id 35103 to 35499
 
 #: Unknown
 msgctxt "#35500"
