@@ -715,6 +715,15 @@
           <default>false</default>
           <control type="toggle" />
         </setting>
+        <setting id="videoplayer.usevaapiswfilter" type="boolean" parent="videoplayer.usevaapi" label="13453" help="36432">
+          <requirement>HAVE_LIBVA</requirement>
+          <dependencies>
+            <dependency type="visible" setting="videoplayer.usevaapi" operator="is">true</dependency>
+          </dependencies>
+          <level>3</level>
+          <default>false</default>
+          <control type="toggle" />
+        </setting>
         <setting id="videoplayer.usedxva2" type="boolean" label="13427" help="36158">
           <requirement>HasDXVA2</requirement>
           <dependencies>
@@ -748,7 +757,7 @@
           <default>true</default>
           <control type="toggle" />
         </setting>
-        <setting id="videoplayer.usexvba" type="boolean" label="13453" help="">
+        <setting id="videoplayer.usexvba" type="boolean" label="13457" help="">
           <visible>HAVE_LIBXVBA</visible>
           <level>2</level>
           <default>true</default>
