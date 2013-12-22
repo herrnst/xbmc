@@ -890,6 +890,19 @@ if test "$target_platform" = "target_linux"; then
   VORBISENC_ALL_LIBS=`${PKG_CONFIG} --static --libs-only-l --silence-errors vorbisenc`
 fi 
 
+use_sse4=no
+if test "$ARCH" = "x86_64-linux" || test "$ARCH" = "i486-linux"; then
+    SAVE_CFLAGS="$CFLAGS"
+    CFLAGS="-msse4.1"
+    AC_COMPILE_IFELSE(
+      [AC_LANG_SOURCE([int foo;])],
+      [ use_sse4=yes
+        USE_SSE4=1],
+      [ use_sse=no
+        USE_SSE4=0])
+    CFLAGS="$SAVE_CFLAGS"
+fi
+
 # Checks for library functions.
 AC_FUNC_ALLOCA
 AC_FUNC_CHOWN
@@ -2630,6 +2643,10 @@ if test "$use_codec_libstagefright" = "yes"; then
 OUTPUT_FILES="$OUTPUT_FILES xbmc/cores/dvdplayer/DVDCodecs/Video/libstagefrightICS/Makefile"
 fi
 
+if test "$use_sse4" = "yes"; then
+OUTPUT_FILES="$OUTPUT_FILES xbmc/linux/sse4/Makefile"
+fi
+
 OUTPUT_FILES="$OUTPUT_FILES \
   xbmc/interfaces/python/Makefile \
   xbmc/interfaces/python/test/Makefile"
@@ -2708,6 +2725,7 @@ AC_SUBST(USE_DOXYGEN)
 AC_SUBST(USE_PVR_ADDONS)
 AC_SUBST(GNUTLS_ALL_LIBS)
 AC_SUBST(VORBISENC_ALL_LIBS)
+AC_SUBST(USE_SSE4)
 
 # pushd and popd are not available in other shells besides bash, so implement
 # our own pushd/popd functions
