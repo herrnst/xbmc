@@ -611,8 +611,6 @@ protected:
   } m_DisplayState;
   CCriticalSection m_DecoderSection;
   CEvent         m_DisplayEvent;
-  int m_ErrorCount;
-  bool m_DecoderError;
 
   DllAvUtil     m_dllAvUtil;
   ThreadIdentifier m_decoderThread;
