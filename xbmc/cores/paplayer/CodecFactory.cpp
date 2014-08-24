@@ -109,6 +109,8 @@ ICodec* CodecFactory::CreateCodec(const CStdString& strFileType)
     return new DVDPlayerCodec();
   else if (strFileType.Equals("opus"))
     return new DVDPlayerCodec();
+  else if (strFileType.Equals("dff") || strFileType.Equals("dsf"))
+    return new DVDPlayerCodec();
 
   return NULL;
 }
