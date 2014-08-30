@@ -118,6 +118,7 @@
   #define HAS_FILESYSTEM_NFS
   #define HAS_MYSQL
   #define HAVE_LIBBLURAY
+  #define HAVE_LIBBLURAY_BDJ
   #define HAVE_LIBSHAIRPLAY
   #define HAVE_LIBCEC
 #endif
