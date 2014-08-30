@@ -110,6 +110,7 @@
 #define HAS_MDNS
 #define HAS_AIRTUNES
 #define HAS_UPNP
+#define HAVE_LIBBLURAY_BDJ
 
 // With CMake these are set by options (through conditional defines in
 // the 'All platforms' section above.
