@@ -104,6 +104,7 @@
 #define HAS_FILESYSTEM_SMB
 #define HAS_AIRTUNES
 #define HAS_UPNP
+#define HAVE_LIBBLURAY_BDJ
 
 #define DECLARE_UNUSED(a,b) a b;
 #endif
