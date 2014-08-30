@@ -102,6 +102,7 @@
 #define HAS_MDNS
 #define HAS_AIRTUNES
 #define HAS_UPNP
+#define HAVE_LIBBLURAY_BDJ
 
 #define DECLARE_UNUSED(a,b) a b;
 #endif
