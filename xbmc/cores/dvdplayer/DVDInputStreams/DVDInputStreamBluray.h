@@ -158,7 +158,8 @@ protected:
     HOLD_DATA,
     HOLD_STILL,
     HOLD_ERROR,
-    HOLD_EXIT
+    HOLD_EXIT,
+    HOLD_PAUSE
   } m_hold;
   BD_EVENT m_event;
 #ifdef HAVE_LIBBLURAY_BDJ
