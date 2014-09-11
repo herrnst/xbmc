@@ -6973,7 +6973,31 @@ msgctxt "#14110"
 msgid "Long date format"
 msgstr ""
 
-#empty strings from id 14111 to 15010
+#. Name of a setting for Blu-ray region codes
+#: system/settings/settings.xml
+msgctxt "#14111"
+msgid "Blu-ray region Code"
+msgstr ""
+
+#. Region Code option for Blu-ray
+#: system/settings/settings.xml
+msgctxt "#14112"
+msgid "Region A"
+msgstr ""
+
+#. Region Code option for Blu-ray
+#: system/settings/settings.xml
+msgctxt "#14113"
+msgid "Region B"
+msgstr ""
+
+#. Region Code option for Blu-ray
+#: system/settings/settings.xml
+msgctxt "#14114"
+msgid "Region C"
+msgstr ""
+
+#empty strings from id 14115 to 15010
 
 #: xbmc/music/MusicDatabase.cpp
 #: xbmc/video/VideoDatabase.cpp
@@ -16641,4 +16665,10 @@ msgstr ""
 #: system/settings/settings.xml
 msgctxt "#38016"
 msgid "%d fps"
+msgstr ""
+
+#. Description of setting #14111 Settings -> Video -> Discs -> Blu-ray region code
+#: system/settings/settings.xml
+msgctxt "#38017"
+msgid "Region A - Americas, East Asia and Southeast Asia. Region B - Africa, Middle East, Southwest Asia, Europe, Australia, New Zealand. Region C - Central Asia, mainland China, Mongolia, South Asia, Belarus, Russia, Ukraine, Kazakhstan."
 msgstr ""
