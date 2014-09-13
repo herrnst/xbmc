@@ -54,6 +54,7 @@ public:
   virtual int Read(uint8_t* buf, int buf_size);
   virtual int64_t Seek(int64_t offset, int whence);
   virtual bool Pause(double dTime) { return false; };
+  void Abort();
   virtual bool IsEOF();
   virtual int64_t GetLength();
   virtual int GetBlockSize() { return 6144; }
@@ -157,7 +158,8 @@ protected:
     HOLD_DATA,
     HOLD_STILL,
     HOLD_ERROR,
-    HOLD_PAUSE
+    HOLD_PAUSE,
+    HOLD_EXIT
   } m_hold;
   BD_EVENT m_event;
 #ifdef HAVE_LIBBLURAY_BDJ
