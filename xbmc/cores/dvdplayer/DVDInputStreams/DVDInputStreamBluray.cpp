@@ -215,6 +215,11 @@ CDVDInputStreamBluray::~CDVDInputStreamBluray()
   delete m_dll;
 }
 
+void CDVDInputStreamBluray::Abort()
+{
+  m_hold = HOLD_EXIT;
+}
+
 bool CDVDInputStreamBluray::IsEOF()
 {
   return false;
@@ -619,7 +624,8 @@ int CDVDInputStreamBluray::Read(uint8_t* buf, int buf_size)
           m_hold == HOLD_HELD)
          return 0;
 
-      if(m_hold == HOLD_ERROR)
+      if(  m_hold == HOLD_ERROR
+        || m_hold == HOLD_EXIT)
         return -1;
 
       result = m_dll->bd_read_ext (m_bd, buf, buf_size, &m_event);
@@ -1028,7 +1034,8 @@ CDVDInputStream::ENextStream CDVDInputStreamBluray::NextStream()
   if(!m_navmode)
     return NEXTSTREAM_NONE;
 
-  if (m_hold == HOLD_ERROR)
+  if(  m_hold == HOLD_ERROR
+    || m_hold == HOLD_EXIT)
   {
 #if (BLURAY_VERSION < BLURAY_VERSION_CODE(0,3,0))
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray::NextStream - libbluray navigation mode read error");
