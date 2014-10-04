@@ -618,6 +618,7 @@ long CDecoder::Release()
     CSingleLock lock(m_DecoderSection);
     CLog::Log(LOGDEBUG,"VAAPI::Release pre-cleanup");
 
+    CSingleLock lock1(g_graphicsContext);
     Message *reply;
     if (m_vaapiOutput.m_controlPort.SendOutMessageSync(COutputControlProtocol::PRECLEANUP,
                                                    &reply,
