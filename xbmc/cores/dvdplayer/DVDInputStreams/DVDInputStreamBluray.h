@@ -162,4 +162,7 @@ protected:
 #ifdef HAVE_LIBBLURAY_BDJ
   struct bd_argb_buffer_s m_argb;
 #endif
+
+  private:
+    void setupPlayerSettings();
 };
