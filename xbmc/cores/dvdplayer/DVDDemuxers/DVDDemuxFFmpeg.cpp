@@ -928,7 +928,7 @@ bool CDVDDemuxFFmpeg::SeekTime(int time, bool backwords, double *startpts)
 
       // seek may fail silently on streams which allow discontinuity
       // if current timestamp is way off asume a pts overflow and try bisect seek
-      if (m_bPtsWrap && fabs(time - m_iCurrentPts/1000) > 10000)
+      if (m_bPtsWrap && fabs(time - m_currentPts/1000) > 10000)
       {
         ret = SeekTimeDiscont(seek_pts, backwords) ? 1 : -1;
       }
@@ -1026,7 +1026,7 @@ bool CDVDDemuxFFmpeg::SeekTimeDiscont(int64_t pts, bool backwards)
     bool ret = SeekByte(pos_max);
     if (ret)
     {
-      m_iCurrentPts = ConvertTimestamp(ts_max, m_pFormatContext->streams[defaultStream]->time_base.den,
+      m_currentPts = ConvertTimestamp(ts_max, m_pFormatContext->streams[defaultStream]->time_base.den,
                                        m_pFormatContext->streams[defaultStream]->time_base.num);
     }
     return ret;
@@ -1103,7 +1103,7 @@ bool CDVDDemuxFFmpeg::SeekTimeDiscont(int64_t pts, bool backwards)
   bool ret = SeekByte(pos);
   if (ret)
   {
-    m_iCurrentPts = ConvertTimestamp(ts, m_pFormatContext->streams[defaultStream]->time_base.den,
+    m_currentPts = ConvertTimestamp(ts, m_pFormatContext->streams[defaultStream]->time_base.den,
                                      m_pFormatContext->streams[defaultStream]->time_base.num);
   }
 
