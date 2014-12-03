@@ -918,7 +918,7 @@ int CDVDInputStreamBluray::GetTime()
 
 bool CDVDInputStreamBluray::SeekTime(int ms)
 {
-  if(m_dll->bd_seek_time(m_bd, ms * 90) < 0)
+  if(m_dll->bd_seek_time(m_bd, ms * 90) <= 0)
     return false;
   else
     return true;
