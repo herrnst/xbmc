@@ -135,6 +135,7 @@ protected:
   uint32_t            m_angle;
   bool                m_menu;
   bool                m_navmode;
+  uint32_t            m_useractionstart;
 
   typedef std::shared_ptr<CDVDOverlayImage> SOverlay;
   typedef std::list<SOverlay>                 SOverlays;
