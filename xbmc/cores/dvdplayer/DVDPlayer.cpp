@@ -4087,7 +4087,7 @@ bool CDVDPlayer::OnAction(const CAction &action)
       {
         THREAD_ACTION(action);
         CLog::Log(LOGDEBUG, " - go to menu");
-        pMenus->OnMenu();
+        pMenus->OnMenu(m_CurrentVideo.lastdts);
         if (m_playSpeed == DVD_PLAYSPEED_PAUSE)
         {
           SetPlaySpeed(DVD_PLAYSPEED_NORMAL);
@@ -4108,13 +4108,13 @@ bool CDVDPlayer::OnAction(const CAction &action)
       case ACTION_NEXT_ITEM:
         THREAD_ACTION(action);
         CLog::Log(LOGDEBUG, " - pushed next in menu, stream will decide");
-        pMenus->OnNext();
+        pMenus->OnNext(m_CurrentVideo.lastdts);
         g_infoManager.SetDisplayAfterSeek();
         return true;
       case ACTION_PREV_ITEM:
         THREAD_ACTION(action);
         CLog::Log(LOGDEBUG, " - pushed prev in menu, stream will decide");
-        pMenus->OnPrevious();
+        pMenus->OnPrevious(m_CurrentVideo.lastdts);
         g_infoManager.SetDisplayAfterSeek();
         return true;
       case ACTION_PREVIOUS_MENU:
@@ -4122,35 +4122,35 @@ bool CDVDPlayer::OnAction(const CAction &action)
         {
           THREAD_ACTION(action);
           CLog::Log(LOGDEBUG, " - menu back");
-          pMenus->OnBack();
+          pMenus->OnBack(m_CurrentVideo.lastdts);
         }
         break;
       case ACTION_MOVE_LEFT:
         {
           THREAD_ACTION(action);
           CLog::Log(LOGDEBUG, " - move left");
-          pMenus->OnLeft();
+          pMenus->OnLeft(m_CurrentVideo.lastdts);
         }
         break;
       case ACTION_MOVE_RIGHT:
         {
           THREAD_ACTION(action);
           CLog::Log(LOGDEBUG, " - move right");
-          pMenus->OnRight();
+          pMenus->OnRight(m_CurrentVideo.lastdts);
         }
         break;
       case ACTION_MOVE_UP:
         {
           THREAD_ACTION(action);
           CLog::Log(LOGDEBUG, " - move up");
-          pMenus->OnUp();
+          pMenus->OnUp(m_CurrentVideo.lastdts);
         }
         break;
       case ACTION_MOVE_DOWN:
         {
           THREAD_ACTION(action);
           CLog::Log(LOGDEBUG, " - move down");
-          pMenus->OnDown();
+          pMenus->OnDown(m_CurrentVideo.lastdts);
         }
         break;
 
