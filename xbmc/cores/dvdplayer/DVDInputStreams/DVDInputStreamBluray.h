@@ -62,26 +62,26 @@ public:
 
 
   /* IMenus */
-  virtual void ActivateButton()          { UserInput(BD_VK_ENTER); }
+  virtual void ActivateButton()          { UserInput(BD_VK_ENTER, -1); }
   virtual void SelectButton(int iButton)
   {
     if(iButton < 10)
-      UserInput((bd_vk_key_e)(BD_VK_0 + iButton));
+      UserInput((bd_vk_key_e)(BD_VK_0 + iButton), -1);
   }
   virtual int  GetCurrentButton()        { return 0; }
   virtual int  GetTotalButtons()         { return 0; }
-  virtual void OnUp()                    { UserInput(BD_VK_UP); }
-  virtual void OnDown()                  { UserInput(BD_VK_DOWN); }
-  virtual void OnLeft()                  { UserInput(BD_VK_LEFT); }
-  virtual void OnRight()                 { UserInput(BD_VK_RIGHT); }
-  virtual void OnMenu();
-  virtual void OnBack()
+  virtual void OnUp(int64_t pts)                    { UserInput(BD_VK_UP, pts); }
+  virtual void OnDown(int64_t pts)                  { UserInput(BD_VK_DOWN, pts); }
+  virtual void OnLeft(int64_t pts)                  { UserInput(BD_VK_LEFT, pts); }
+  virtual void OnRight(int64_t pts)                 { UserInput(BD_VK_RIGHT, pts); }
+  virtual void OnMenu(int64_t pts);
+  virtual void OnBack(int64_t pts)
   {
     if(IsInMenu())
-      OnMenu();
+      OnMenu(pts);
   }
-  virtual void OnNext()                  {}
-  virtual void OnPrevious()              {}
+  virtual void OnNext(int64_t pts)                  {}
+  virtual void OnPrevious(int64_t pts)              {}
   virtual bool HasMenu();
   virtual bool IsInMenu();
   virtual bool OnMouseMove(const CPoint &point)  { return MouseMove(point); }
@@ -92,7 +92,7 @@ public:
   virtual bool SetState(const std::string &xmlstate)   { return false; }
 
 
-  void UserInput(bd_vk_key_e vk);
+  void UserInput(bd_vk_key_e vk, int64_t pts);
   bool MouseMove(const CPoint &point);
   bool MouseClick(const CPoint &point);
 
