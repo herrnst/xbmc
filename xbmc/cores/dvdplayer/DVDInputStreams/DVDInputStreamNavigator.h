@@ -91,14 +91,14 @@ public:
   void SelectButton(int iButton);
   void SkipStill();
   void SkipWait();
-  void OnUp();
-  void OnDown();
-  void OnLeft();
-  void OnRight();
-  void OnMenu();
-  void OnBack();
-  void OnNext();
-  void OnPrevious();
+  void OnUp(int64_t pts);
+  void OnDown(int64_t pts);
+  void OnLeft(int64_t pts);
+  void OnRight(int64_t pts);
+  void OnMenu(int64_t pts);
+  void OnBack(int64_t pts);
+  void OnNext(int64_t pts);
+  void OnPrevious(int64_t pts);
   bool OnMouseMove(const CPoint &point);
   bool OnMouseClick(const CPoint &point);
 
