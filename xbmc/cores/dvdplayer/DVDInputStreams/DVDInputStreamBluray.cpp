@@ -1079,14 +1079,14 @@ CDVDInputStream::ENextStream CDVDInputStreamBluray::NextStream()
   return NEXTSTREAM_OPEN;
 }
 
-void CDVDInputStreamBluray::UserInput(bd_vk_key_e vk)
+void CDVDInputStreamBluray::UserInput(bd_vk_key_e vk, int64_t pts)
 {
   if(m_bd == NULL || !m_navmode)
     return;
 
   m_useractionstart = XbmcThreads::SystemClockMillis();
   
-  m_dll->bd_user_input(m_bd, -1, vk);
+  m_dll->bd_user_input(m_bd, pts, vk);
 }
 
 bool CDVDInputStreamBluray::MouseMove(const CPoint &point)
@@ -1124,7 +1124,7 @@ bool CDVDInputStreamBluray::MouseClick(const CPoint &point)
   return false;
 }
 
-void CDVDInputStreamBluray::OnMenu()
+void CDVDInputStreamBluray::OnMenu(int64_t pts)
 {
   if(m_bd == NULL || !m_navmode)
   {
