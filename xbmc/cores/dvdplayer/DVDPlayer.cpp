@@ -3800,8 +3800,11 @@ int CDVDPlayer::OnDVDNavResult(void* pData, int iMessage)
     }
     else if(iMessage == 1)
       m_messenger.Put(new CDVDMsg(CDVDMsg::GENERAL_FLUSH));
-    else if(iMessage == 2)
+    else if (iMessage == 2)
+    {
       m_dvd.iSelectedAudioStream = *(int*)pData;
+      m_messenger.Put(new CDVDMsgPlayerSeek((int)GetTime(), true, true, true, true, true, true));
+    }
     else if(iMessage == 3)
       m_dvd.iSelectedSPUStream   = *(int*)pData;
     else if(iMessage == 4)
