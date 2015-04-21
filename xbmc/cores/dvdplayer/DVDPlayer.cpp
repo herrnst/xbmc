@@ -3756,6 +3756,10 @@ int CDVDPlayer::OnDVDNavResult(void* pData, int iMessage)
         CLog::Log(LOGDEBUG, "CDVDPlayer::OnDVDNavResult - libbluray DVDSTATE_STILL end");
       }
     }
+    else if (iMessage == 9)
+    {
+      m_overlayContainer.Clear();
+    }
     return 0;
   }
 
