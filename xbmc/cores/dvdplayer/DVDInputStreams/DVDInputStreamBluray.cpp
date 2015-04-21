@@ -470,9 +470,7 @@ void CDVDInputStreamBluray::ProcessEvent() {
 
   case BD_EVENT_SEEK:
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_SEEK");
-    //m_player->OnDVDNavResult(NULL, 1);
-    //m_dll->bd_read_skip_still(m_bd);
-    //m_hold = HOLD_HELD;
+    m_player->OnDVDNavResult(NULL, 9);
     break;
 
   case BD_EVENT_STILL_TIME:
