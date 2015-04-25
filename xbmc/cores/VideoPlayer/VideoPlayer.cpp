@@ -1156,7 +1156,14 @@ bool CVideoPlayer::IsBetterStream(CCurrentStream& current, CDemuxStream* stream)
       return false;
 
     if(current.type == STREAM_AUDIO && stream->dvdNavId == m_dvd.iSelectedAudioStream)
+    {
+      if (m_pInputStream->IsStreamType(DVDSTREAM_TYPE_BLURAY))
+      {
+        if (stream->codec != m_dvd.iCodec)
+          return false;
+      }
       return true;
+    }
     if(current.type == STREAM_SUBTITLE && stream->dvdNavId == m_dvd.iSelectedSPUStream)
       return true;
     if(current.type == STREAM_VIDEO    && current.id < 0)
@@ -3958,9 +3965,14 @@ int CVideoPlayer::OnDVDNavResult(void* pData, int iMessage)
     case BD_EVENT_AUDIO_STREAM:
     {
       BDNavMessage* message = static_cast<BDNavMessage*>(pData);
-      m_dvd.iSelectedAudioStream = *(int*)message->data;
+      std::pair<int, int>* stream = static_cast<std::pair<int,int>*>(message->data);
+      m_dvd.iSelectedAudioStream = stream->first;
+      m_dvd.iCodec = stream->second;
       if (message->useraction)
+      {
+        CloseStream(m_CurrentAudio, false);
         m_messenger.Put(new CDVDMsgPlayerSeek((int)GetTime(), true, true, true, true, true, true));
+      }
       break;
     }
     case BD_EVENT_PG_TEXTST_STREAM:
