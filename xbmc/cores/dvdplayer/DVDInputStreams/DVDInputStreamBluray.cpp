@@ -40,6 +40,7 @@
 #include "settings/DiscSettings.h"
 #include "utils/LangCodeExpander.h"
 #include "filesystem/SpecialProtocol.h"
+#include "utils/StringUtils.h"
 
 #define LIBBLURAY_BYTESEEK 0
 
@@ -79,7 +80,7 @@ int64_t DllLibbluray::file_read(BD_FILE_H *file, uint8_t *buf, int64_t size)
 
 int64_t DllLibbluray::file_write(BD_FILE_H *file, const uint8_t *buf, int64_t size)
 {
-    return -1;
+  return static_cast<CFile*>(file->internal)->Write(buf, size);
 }
 
 BD_FILE_H * DllLibbluray::file_open(const char* filename, const char *mode)
@@ -94,6 +95,12 @@ BD_FILE_H * DllLibbluray::file_open(const char* filename, const char *mode)
     file->eof   = file_eof;
 
     CFile* fp = new CFile();
+    if (StringUtils::EqualsNoCase(mode, "wb") && fp->OpenForWrite(filename, true))
+    {
+      file->internal = (void*)fp;
+      return file;
+    }
+
     if(fp->Open(filename))
     {
       file->internal = (void*)fp;
