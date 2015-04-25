@@ -553,16 +553,19 @@ void CDVDInputStreamBluray::ProcessEvent() {
 
   case BD_EVENT_AUDIO_STREAM:
   {
-    pid = -1;
+    std::pair<int, int> stream = std::make_pair(-1, -1);
     if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
       message.useraction = true;
     if ( m_title && m_title->clip_count > m_clip
       && m_title->clips[m_clip].audio_stream_count > (uint8_t)(m_event.param - 1))
     {
-      pid = m_title->clips[m_clip].audio_streams[m_event.param - 1].pid;
-
+      stream.first = m_title->clips[m_clip].audio_streams[m_event.param - 1].pid;
+      int format = m_title->clips[m_clip].audio_streams[m_event.param - 1].coding_type;
+      BD_CODEC_MAP_IT it = bd_codec_map.find(format);
+      if (it != bd_codec_map.end())
+        stream.second = it->second;
     }
-    message.data = &pid;
+    message.data = &stream;
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_AUDIO_STREAM %d %d",
       m_event.param, pid);
     m_player->OnDVDNavResult(&message, BD_EVENT_AUDIO_STREAM);
