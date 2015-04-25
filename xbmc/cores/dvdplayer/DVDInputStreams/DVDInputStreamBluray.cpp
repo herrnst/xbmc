@@ -456,6 +456,7 @@ void CDVDInputStreamBluray::Close()
 void CDVDInputStreamBluray::ProcessEvent() {
 
   int pid = -1;
+  BDNavMessage message;
   switch (m_event.event) {
 
   case BD_EVENT_ERROR:
@@ -470,13 +471,13 @@ void CDVDInputStreamBluray::ProcessEvent() {
 
   case BD_EVENT_SEEK:
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_SEEK");
-    m_player->OnDVDNavResult(NULL, 9);
+    m_player->OnDVDNavResult(NULL, BD_EVENT_SEEK);
     break;
 
   case BD_EVENT_STILL_TIME:
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_STILL_TIME %d", m_event.param);
     pid = m_event.param;
-    m_player->OnDVDNavResult((void*) &pid, 5);
+    m_player->OnDVDNavResult((void*)&pid, BD_EVENT_STILL_TIME);
     m_hold = HOLD_STILL;
     break;
 
@@ -491,7 +492,7 @@ void CDVDInputStreamBluray::ProcessEvent() {
     else
       m_hold = HOLD_NONE;
 
-      m_player->OnDVDNavResult((void*)&pid, 7);
+    m_player->OnDVDNavResult((void*)&pid, BD_EVENT_STILL);
     Sleep(100);
     break;
 
@@ -523,7 +524,7 @@ void CDVDInputStreamBluray::ProcessEvent() {
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_TITLE %d",
         m_event.param);
     if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
-      m_player->OnDVDNavResult(NULL, 1);
+      m_player->OnDVDNavResult(NULL, BD_EVENT_TITLE);
     break;
 
   case BD_EVENT_PLAYLIST:
@@ -545,27 +546,33 @@ void CDVDInputStreamBluray::ProcessEvent() {
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_CHAPTER %d",
         m_event.param);
     if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
-      m_player->OnDVDNavResult(NULL, 1);
+      m_player->OnDVDNavResult(NULL, BD_EVENT_CHAPTER);
     break;
 
     /* stream selection */
 
   case BD_EVENT_AUDIO_STREAM:
+  {
     pid = -1;
-    if (m_title && m_title->clip_count > m_clip
-        && m_title->clips[m_clip].audio_stream_count
-            > (uint8_t) (m_event.param - 1))
+    if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
+      message.useraction = true;
+    if ( m_title && m_title->clip_count > m_clip
+      && m_title->clips[m_clip].audio_stream_count > (uint8_t)(m_event.param - 1))
+    {
       pid = m_title->clips[m_clip].audio_streams[m_event.param - 1].pid;
-    CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_AUDIO_STREAM %d %d",
-        m_event.param, pid);
-    m_player->OnDVDNavResult((void*) &pid, 2);
-    break;
 
+    }
+    message.data = &pid;
+    CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_AUDIO_STREAM %d %d",
+      m_event.param, pid);
+    m_player->OnDVDNavResult(&message, BD_EVENT_AUDIO_STREAM);
+    break;
+  }
   case BD_EVENT_PG_TEXTST:
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_PG_TEXTST %d",
         m_event.param);
     pid = m_event.param;
-    m_player->OnDVDNavResult((void*) &pid, 4);
+    m_player->OnDVDNavResult((void*)&pid, BD_EVENT_PG_TEXTST);
     break;
 
   case BD_EVENT_PG_TEXTST_STREAM:
@@ -577,7 +584,7 @@ void CDVDInputStreamBluray::ProcessEvent() {
     CLog::Log(LOGDEBUG,
         "CDVDInputStreamBluray - BD_EVENT_PG_TEXTST_STREAM %d, %d",
         m_event.param, pid);
-    m_player->OnDVDNavResult((void*) &pid, 3);
+    m_player->OnDVDNavResult((void*)&pid, BD_EVENT_PG_TEXTST_STREAM);
     break;
 
 #if (BLURAY_VERSION >= BLURAY_VERSION_CODE(0,2,2))
@@ -608,7 +615,7 @@ void CDVDInputStreamBluray::ProcessEvent() {
     break;
 
   case BD_EVENT_DISCONTINUITY:
-    m_player->OnDVDNavResult(NULL, 1);
+    m_player->OnDVDNavResult(NULL, BD_EVENT_DISCONTINUITY);
     break;
 
   case BD_EVENT_NONE:
@@ -709,7 +716,9 @@ void CDVDInputStreamBluray::OverlayClose()
     m_planes[i].o.clear();
   CDVDOverlayGroup* group   = new CDVDOverlayGroup();
   group->bForced = true;
-  m_player->OnDVDNavResult(group, 0);
+  BDNavMessage message;
+  message.data = group;
+  m_player->OnDVDNavResult(&message, BD_EVENT_MENU_OVERLAY);
   group->Release();
 #endif
 }
@@ -779,15 +788,13 @@ void CDVDInputStreamBluray::OverlayFlush(int64_t pts)
     for(SOverlays::iterator it = m_planes[i].o.begin(); it != m_planes[i].o.end(); ++it)
       group->m_overlays.push_back((*it)->Acquire());
   }
-
+  BDNavMessage message;
   if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
-  {
-    m_player->OnDVDNavResult(group, -1);
-  }
-  else
-  {
-    m_player->OnDVDNavResult(group, 0);
-  }
+    message.useraction = true;
+
+  message.data = group;
+   m_player->OnDVDNavResult(&message, BD_EVENT_MENU_OVERLAY);
+  
   group->Release();
 #endif
 }
