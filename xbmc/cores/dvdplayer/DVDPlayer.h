@@ -458,6 +458,7 @@ protected:
     unsigned int iDVDStillStartTime; // time in ticks when we started the still
     int iSelectedSPUStream;   // mpeg stream id, or -1 if disabled
     int iSelectedAudioStream; // mpeg stream id, or -1 if disabled
+    int iCodec; // Dolby TrueHD and its core have the same stream id, it needed to distinguish them
   } m_dvd;
 
   enum ETimeSource
