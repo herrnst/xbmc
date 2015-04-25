@@ -31,6 +31,7 @@ extern "C"
 #include <libbluray/keys.h>
 #include <libbluray/overlay.h>
 #include <libbluray/player_settings.h>
+#include <libavcodec/avcodec.h>
 }
 
 #define MAX_PLAYLIST_ID 99999
@@ -180,4 +181,29 @@ protected:
 
   private:
     void SetupPlayerSettings();
+};
+
+typedef std::map<int, AVCodecID> BD_CODEC_MAP;
+typedef std::map<int, AVCodecID>::const_iterator BD_CODEC_MAP_IT;
+
+static const BD_CODEC_MAP bd_codec_map = {
+  { 0x01, AV_CODEC_ID_MPEG1VIDEO },
+  { 0x02, AV_CODEC_ID_MPEG2VIDEO },
+  { 0x03, AV_CODEC_ID_MP1 },
+  { 0x04, AV_CODEC_ID_MP2 },
+  { 0x80, AV_CODEC_ID_PCM_BLURAY },
+  { 0x81, AV_CODEC_ID_AC3 },
+  { 0x82, AV_CODEC_ID_DTS },
+  { 0x83, AV_CODEC_ID_TRUEHD },
+  { 0x84, AV_CODEC_ID_EAC3 },
+  { 0x85, AV_CODEC_ID_DTS }, //DTS-HD
+  { 0x86, AV_CODEC_ID_DTS }, //DTS-HD Master
+  { 0xa1, AV_CODEC_ID_NONE }, //AC-3 Plus for secondary audio
+  { 0xa2, AV_CODEC_ID_NONE }, //DTS-HD for secondary audio
+  { 0xea, AV_CODEC_ID_VC1 },
+  { 0x1b, AV_CODEC_ID_H264 },
+  { 0x20, AV_CODEC_ID_NONE }, //H.264 MVC dep.
+  { 0x90, AV_CODEC_ID_NONE }, //Presentation Graphics
+  { 0x91, AV_CODEC_ID_NONE }, //Presentation Graphics
+  { 0x92, AV_CODEC_ID_NONE } //Interactive Graphics
 };
