@@ -25,6 +25,7 @@
 #include "DVDInputStreams/DVDInputStream.h"
 #include "DVDInputStreams/DVDFactoryInputStream.h"
 #include "DVDInputStreams/DVDInputStreamNavigator.h"
+#include "DVDInputStreams/DVDInputStreamBluray.h"
 #include "DVDInputStreams/DVDInputStreamPVRManager.h"
 
 #include "DVDDemuxers/DVDDemux.h"
@@ -3786,59 +3787,73 @@ int CDVDPlayer::OnDVDNavResult(void* pData, int iMessage)
 {
   if (m_pInputStream->IsStreamType(DVDSTREAM_TYPE_BLURAY))
   {
-    if (iMessage == -1)
+    switch (iMessage)
     {
-      CDVDOverlay* ov = (CDVDOverlay*)pData;
-      ov->iPTSStartTime = 0;
-      m_overlayContainer.Add(ov);
-    }
-    if (iMessage == 0)
+    case BD_EVENT_MENU_OVERLAY:
     {
-      CDVDOverlay* ov = (CDVDOverlay*)pData;
-      ov->iPTSStartTime = m_CurrentVideo.lastdts;
+      BDNavMessage* message = static_cast<BDNavMessage*>(pData);
+      CDVDOverlay* ov = (CDVDOverlay*)message->data;
+      if (message->useraction)
+      {
+        ov->iPTSStartTime = 0;
+      }
+      else
+      {
+        ov->iPTSStartTime = m_CurrentVideo.lastdts;
+      }
       m_overlayContainer.Add(ov);
+      break;
     }
-    else if(iMessage == 1)
+    case BD_EVENT_CHAPTER:
+    case BD_EVENT_DISCONTINUITY:
+    case BD_EVENT_TITLE:
+    {
       m_messenger.Put(new CDVDMsg(CDVDMsg::GENERAL_FLUSH));
-    else if (iMessage == 2)
-    {
-      m_dvd.iSelectedAudioStream = *(int*)pData;
-      m_messenger.Put(new CDVDMsgPlayerSeek((int)GetTime(), true, true, true, true, true, true));
+      break;
     }
-    else if(iMessage == 3)
-      m_dvd.iSelectedSPUStream   = *(int*)pData;
-    else if(iMessage == 4)
-      m_dvdPlayerVideo->EnableSubtitle(*(int*)pData ? true: false);
-    else if(iMessage == 5)
+    case BD_EVENT_AUDIO_STREAM:
+    {
+      BDNavMessage* message = static_cast<BDNavMessage*>(pData);
+      m_dvd.iSelectedAudioStream = *(int*)message->data;
+      if (message->useraction)
+        m_messenger.Put(new CDVDMsgPlayerSeek((int)GetTime(), true, true, true, true, true, true));
+      break;
+    }
+    case BD_EVENT_PG_TEXTST_STREAM:
+    {
+      m_dvd.iSelectedSPUStream = *(int*)pData;
+      break;
+    }
+    case BD_EVENT_PG_TEXTST:
+    {
+      m_dvdPlayerVideo->EnableSubtitle(*(int*)pData ? true : false);
+      break;
+    }
+    case BD_EVENT_STILL_TIME:
     {
       if (m_dvd.state != DVDSTATE_STILL)
       {
         // else notify the player we have received a still frame
 
-        m_dvd.iDVDStillTime      = *(int*)pData;
+        m_dvd.iDVDStillTime = *(int*)pData;
         m_dvd.iDVDStillStartTime = XbmcThreads::SystemClockMillis();
 
         /* adjust for the output delay in the video queue */
         unsigned int time = 0;
-        if( m_CurrentVideo.stream && m_dvd.iDVDStillTime > 0 )
+        if (m_CurrentVideo.stream && m_dvd.iDVDStillTime > 0)
         {
-          time = (unsigned int)(m_dvdPlayerVideo->GetOutputDelay() / ( DVD_TIME_BASE / 1000 ));
-          if( time < 10000 && time > 0 )
+          time = (unsigned int)(m_dvdPlayerVideo->GetOutputDelay() / (DVD_TIME_BASE / 1000));
+          if (time < 10000 && time > 0)
             m_dvd.iDVDStillTime += time;
         }
         m_dvd.state = DVDSTATE_STILL;
         CLog::Log(LOGDEBUG,
-                  "DVDNAV_STILL_FRAME - waiting %i sec, with delay of %d sec",
-                  m_dvd.iDVDStillTime, time / 1000);
+          "DVDNAV_STILL_FRAME - waiting %i sec, with delay of %d sec",
+          m_dvd.iDVDStillTime, time / 1000);
       }
+      break;
     }
-    else if (iMessage == 6)
-    {
-      m_dvd.state = DVDSTATE_NORMAL;
-      CLog::Log(LOGDEBUG, "CDVDPlayer::OnDVDNavResult - libbluray read error (DVDSTATE_NORMAL)");
-      CGUIDialogKaiToast::QueueNotification(g_localizeStrings.Get(25008), g_localizeStrings.Get(25009));
-    }
-    else if (iMessage == 7)
+    case BD_EVENT_STILL:
     {
       int on = *(int*)pData;
       if (on && m_dvd.state != DVDSTATE_STILL)
@@ -3855,10 +3870,22 @@ int CDVDPlayer::OnDVDNavResult(void* pData, int iMessage)
         m_dvd.iDVDStillTime = 0;
         CLog::Log(LOGDEBUG, "CDVDPlayer::OnDVDNavResult - libbluray DVDSTATE_STILL end");
       }
+      break;
     }
-    else if (iMessage == 9)
+    case 6:
+    {
+      m_dvd.state = DVDSTATE_NORMAL;
+      CLog::Log(LOGDEBUG, "CDVDPlayer::OnDVDNavResult - libbluray read error (DVDSTATE_NORMAL)");
+      CGUIDialogKaiToast::QueueNotification(g_localizeStrings.Get(25008), g_localizeStrings.Get(25009));
+      break;
+    }
+    case BD_EVENT_SEEK:
     {
       m_overlayContainer.Clear();
+      break;
+    }
+    default:
+      break;
     }
     return 0;
   }
