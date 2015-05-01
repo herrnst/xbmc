@@ -618,7 +618,7 @@ void CDVDInputStreamBluray::ProcessEvent() {
     break;
 
   case BD_EVENT_DISCONTINUITY:
-    m_player->OnDVDNavResult(NULL, BD_EVENT_DISCONTINUITY);
+    //m_player->OnDVDNavResult(NULL, BD_EVENT_DISCONTINUITY);
     break;
 
   case BD_EVENT_NONE:
