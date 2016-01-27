@@ -282,7 +282,7 @@ namespace ADDON
     CVFSEntryIFileDirectoryWrapper(VFSEntryPtr ptr) : CVFSEntryIDirectoryWrapper(ptr) {}
 
     //! \brief Empty destructor.
-    virtual CVFSEntryIFileDirectoryWrapper() {}
+    virtual ~CVFSEntryIFileDirectoryWrapper() {}
 
     //! \brief Check if the given file should be treated as a directory.
     //! \param[in] URL URL for file to probe.
