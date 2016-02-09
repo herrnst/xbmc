@@ -119,12 +119,12 @@ IFile* CFileFactory::CreateLoader(const CURL& url)
   if (!strProtocol.empty())
   {
     VECADDONS addons;
-    CAddonMgr::GetInstance().GetAddons(addons, ADDON_VFS);
+    CAddonMgr::GetInstance().GetAddons(ADDON_VFS, addons);
     for (size_t i=0;i<addons.size();++i)
     {
       VFSEntryPtr vfs(std::static_pointer_cast<CVFSEntry>(addons[i]));
       if (vfs->HasFiles() && vfs->GetProtocols().find(strProtocol) != std::string::npos)
-        return new CVFSEntryIFileWrapper(CVFSEntryManager::Get().GetAddon(vfs->ID()));
+        return new CVFSEntryIFileWrapper(CVFSEntryManager::GetInstance().GetAddon(vfs->ID()));
     }
   }
 

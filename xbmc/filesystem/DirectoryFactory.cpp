@@ -217,12 +217,12 @@ IDirectory* CDirectoryFactory::Create(const CURL& url)
   if (!url.GetProtocol().empty())
   {
     VECADDONS addons;
-    CAddonMgr::GetInstance().GetAddons(addons, ADDON_VFS);
+    CAddonMgr::GetInstance().GetAddons(ADDON_VFS, addons);
     for (size_t i=0;i<addons.size();++i)
     {
       VFSEntryPtr vfs(std::static_pointer_cast<CVFSEntry>(addons[i]));
       if (vfs->HasDirectories() && vfs->GetProtocols().find(url.GetProtocol()) != std::string::npos)
-        return new CVFSEntryIDirectoryWrapper(CVFSEntryManager::Get().GetAddon(vfs->ID()));
+        return new CVFSEntryIDirectoryWrapper(CVFSEntryManager::GetInstance().GetAddon(vfs->ID()));
     }
   }
 
