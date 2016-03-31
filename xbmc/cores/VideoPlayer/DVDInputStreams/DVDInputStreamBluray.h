@@ -128,7 +128,7 @@ protected:
   static void OverlayClear(SPlane& plane, int x, int y, int w, int h);
   static void OverlayInit (SPlane& plane, int w, int h);
 
-  IVideoPlayer*         m_player;
+  IVideoPlayer*       m_player;
   DllLibbluray*       m_dll;
   BLURAY*             m_bd;
   BLURAY_TITLE_INFO*  m_title;
@@ -137,7 +137,8 @@ protected:
   uint32_t            m_angle;
   bool                m_menu;
   bool                m_navmode;
-  int m_dispTimeBeforeRead;
+  int                 m_dispTimeBeforeRead;
+  uint32_t            m_useractionstart;
 
   typedef std::shared_ptr<CDVDOverlayImage> SOverlay;
   typedef std::list<SOverlay>                 SOverlays;
