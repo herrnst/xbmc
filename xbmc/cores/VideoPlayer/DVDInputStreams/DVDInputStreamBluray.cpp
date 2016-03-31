@@ -518,6 +518,8 @@ void CDVDInputStreamBluray::ProcessEvent() {
   case BD_EVENT_TITLE:
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_TITLE %d",
         m_event.param);
+    if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
+      m_player->OnDVDNavResult(NULL, 1);
     break;
 
   case BD_EVENT_PLAYLIST:
@@ -538,6 +540,8 @@ void CDVDInputStreamBluray::ProcessEvent() {
   case BD_EVENT_CHAPTER:
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray - BD_EVENT_CHAPTER %d",
         m_event.param);
+    if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
+      m_player->OnDVDNavResult(NULL, 1);
     break;
 
     /* stream selection */
@@ -790,7 +794,14 @@ void CDVDInputStreamBluray::OverlayFlush(int64_t pts)
       group->m_overlays.push_back((*it)->Acquire());
   }
 
-  m_player->OnDVDNavResult(group, 0);
+  if ((XbmcThreads::SystemClockMillis() - m_useractionstart) < 2000)
+  {
+    m_player->OnDVDNavResult(group, -1);
+  }
+  else
+  {
+    m_player->OnDVDNavResult(group, 0);
+  }
   group->Release();
 #endif
 }
@@ -1097,6 +1108,7 @@ void CDVDInputStreamBluray::UserInput(bd_vk_key_e vk)
   }
   else
   {
+    m_useractionstart = XbmcThreads::SystemClockMillis();
     /* process all queued up events */
     while (m_dll->bd_get_event(m_bd, &m_event))
       ProcessEvent();
@@ -1129,7 +1141,10 @@ bool CDVDInputStreamBluray::MouseClick(const CPoint &point)
   }
 
   if (m_dll->bd_user_input(m_bd, -1, BD_VK_MOUSE_ACTIVATE) >= 0)
+  {
+    m_useractionstart = XbmcThreads::SystemClockMillis();
     return true;
+  }
 
   CLog::Log(LOGDEBUG, "CDVDInputStreamBluray::MouseClick - mouse click (user input) failed");
   return false;
@@ -1143,16 +1158,25 @@ void CDVDInputStreamBluray::OnMenu()
     return;
   }
 
-  if(m_dll->bd_user_input(m_bd, -1, BD_VK_POPUP) >= 0)
+  if (m_dll->bd_user_input(m_bd, -1, BD_VK_POPUP) >= 0)
+  {
+    m_useractionstart = XbmcThreads::SystemClockMillis();
     return;
+  }
+
   CLog::Log(LOGDEBUG, "CDVDInputStreamBluray::OnMenu - popup failed, trying root");
 
-  if(m_dll->bd_user_input(m_bd, -1, BD_VK_ROOT_MENU) >= 0)
+  if (m_dll->bd_user_input(m_bd, -1, BD_VK_ROOT_MENU) >= 0)
+  {
+    m_useractionstart = XbmcThreads::SystemClockMillis();
     return;
+  }
 
   CLog::Log(LOGDEBUG, "CDVDInputStreamBluray::OnMenu - root failed, trying explicit");
   if(m_dll->bd_menu_call(m_bd, -1) <= 0)
     CLog::Log(LOGDEBUG, "CDVDInputStreamBluray::OnMenu - root failed");
+  else
+    m_useractionstart = XbmcThreads::SystemClockMillis();
 }
 
 bool CDVDInputStreamBluray::IsInMenu()
