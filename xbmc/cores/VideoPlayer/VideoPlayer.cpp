@@ -4021,8 +4021,18 @@ int CVideoPlayer::OnDVDNavResult(void* pData, int iMessage)
 {
   if (m_pInputStream->IsStreamType(DVDSTREAM_TYPE_BLURAY))
   {
-    if(iMessage == 0)
-      m_overlayContainer.Add((CDVDOverlay*)pData);
+    if (iMessage == -1)
+    {
+      CDVDOverlay* ov = (CDVDOverlay*)pData;
+      ov->iPTSStartTime = 0;
+      m_overlayContainer.Add(ov);
+    }
+    if (iMessage == 0)
+    {
+      CDVDOverlay* ov = (CDVDOverlay*)pData;
+      ov->iPTSStartTime = m_CurrentVideo.lastdts;
+      m_overlayContainer.Add(ov);
+    }
     else if(iMessage == 1)
       m_messenger.Put(new CDVDMsg(CDVDMsg::GENERAL_FLUSH));
     else if(iMessage == 2)
