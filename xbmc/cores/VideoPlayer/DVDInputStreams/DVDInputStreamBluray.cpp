@@ -322,7 +322,7 @@ bool CDVDInputStreamBluray::Open()
   m_dll->bd_register_dir(DllLibbluray::dir_open);
   m_dll->bd_register_file(DllLibbluray::file_open);
   m_dll->bd_set_debug_handler(DllLibbluray::bluray_logger);
-  m_dll->bd_set_debug_mask(DBG_CRIT | DBG_BLURAY | DBG_NAV);
+  m_dll->bd_set_debug_mask(DBG_CRIT | DBG_BLURAY | DBG_NAV | DBG_BDJ);
 
   CLog::Log(LOGDEBUG, "CDVDInputStreamBluray::Open - opening %s", root.c_str());
   m_bd = m_dll->bd_open(root.c_str(), NULL);
