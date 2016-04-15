@@ -4024,13 +4024,13 @@ int CVideoPlayer::OnDVDNavResult(void* pData, int iMessage)
     if (iMessage == -1)
     {
       CDVDOverlay* ov = (CDVDOverlay*)pData;
-      ov->iPTSStartTime = 0;
+      ov->iPTSStartTime = m_VideoPlayerVideo->GetCurrentPts();
       m_overlayContainer.Add(ov);
     }
     if (iMessage == 0)
     {
       CDVDOverlay* ov = (CDVDOverlay*)pData;
-      ov->iPTSStartTime = m_CurrentVideo.lastdts;
+      ov->iPTSStartTime = m_VideoPlayerVideo->GetCurrentPts() + m_VideoPlayerVideo->GetOutputDelay();
       m_overlayContainer.Add(ov);
     }
     else if(iMessage == 1)
