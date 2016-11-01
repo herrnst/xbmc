@@ -119,5 +119,8 @@ protected:
   int m_disconAdjustCounter = 0;
   XbmcThreads::EndTime<> m_disconTimer;
   bool m_disconLearning = false;
+
+private:
+  inline bool AllowRTPassThrough();
 };
 
