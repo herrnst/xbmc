@@ -76,11 +76,16 @@ CVideoPlayerAudio::~CVideoPlayerAudio()
   // CloseStream(true);
 }
 
+bool CVideoPlayerAudio::AllowRTPassThrough()
+{
+  return CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH);
+}
+
 bool CVideoPlayerAudio::OpenStream(CDVDStreamInfo hints)
 {
   CLog::Log(LOGINFO, "Finding audio codec for: %i", hints.codec);
   bool allowpassthrough = !CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_VIDEOPLAYER_USEDISPLAYASCLOCK);
-  if (m_processInfo.IsRealtimeStream())
+  if (!AllowRTPassThrough() && m_processInfo.IsRealtimeStream())
     allowpassthrough = false;
 
   CAEStreamInfo::DataType streamType =
@@ -458,8 +463,8 @@ bool CVideoPlayerAudio::ProcessDecoderOutput(DVDAudioFrame &audioframe)
     }
 
     // if stream switches to realtime, disable pass through
-    // or switch to resample
-    if (m_processInfo.IsRealtimeStream() && m_synctype != SYNC_RESAMPLE)
+    // or switch to resample when realtime passthrough is not allowed
+    if (m_processInfo.IsRealtimeStream() && m_synctype != SYNC_RESAMPLE && !AllowRTPassThrough())
     {
       m_synctype = SYNC_RESAMPLE;
       if (SwitchCodecIfNeeded())
@@ -607,7 +612,7 @@ bool CVideoPlayerAudio::SwitchCodecIfNeeded()
 {
   CLog::Log(LOGDEBUG, "CVideoPlayerAudio: stream props changed, checking for passthrough");
   bool allowpassthrough = !CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_VIDEOPLAYER_USEDISPLAYASCLOCK);
-  if (m_processInfo.IsRealtimeStream() || m_synctype == SYNC_RESAMPLE)
+  if ((!AllowRTPassThrough() && m_processInfo.IsRealtimeStream()) || m_synctype == SYNC_RESAMPLE)
     allowpassthrough = false;
 
   CAEStreamInfo::DataType streamType = m_audioSink.GetPassthroughStreamType(
