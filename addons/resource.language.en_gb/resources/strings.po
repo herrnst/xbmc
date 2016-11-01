@@ -24075,7 +24075,16 @@ msgctxt "#39201"
 msgid "HDR10+"
 msgstr ""
 
-#empty strings from id 39202 to 39999
+#empty strings from id 39202 to 39900
+
+msgctxt "#39901"
+msgid "Allow passthrough for live/realtime streams"
+msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#39902"
+msgid "Enables passthrough for live/realtime streams like PVR TV channels (dangerous!)"
+msgstr ""
 
 # 40000 to 40800 are reserved for Video Versions feature
 
