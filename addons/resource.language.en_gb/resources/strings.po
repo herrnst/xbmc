@@ -26272,3 +26272,15 @@ msgstr ""
 msgctxt "#40806"
 msgid "Adjust and display the volume level while audio is passed through. The level is not applied to the bitstream, but every change is announced, so an add-on or automation can apply it to an external audio processor."
 msgstr ""
+
+# Additional strings for patch settings
+#: system/settings/settings.xml
+msgctxt "#49901"
+msgid "Allow passthrough for live/realtime streams"
+msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#49902"
+msgid "Enables passthrough for live/realtime streams like PVR TV channels (dangerous!)"
+msgstr ""
+
