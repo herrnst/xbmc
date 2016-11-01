@@ -24317,6 +24317,15 @@ msgstr ""
 
 #empty strings from id 39211 to 39999
 
+msgctxt "#39901"
+msgid "Allow passthrough for live/realtime streams"
+msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#39902"
+msgid "Enables passthrough for live/realtime streams like PVR TV channels (dangerous!)"
+msgstr ""
+
 # 40000 to 40800 are reserved for Video Versions feature
 
 #. Generic video versions label (plural)
