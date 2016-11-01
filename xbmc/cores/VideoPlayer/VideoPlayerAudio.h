@@ -110,5 +110,8 @@ protected:
   SInfo            m_info;
 
   bool m_displayReset = false;
+
+private:
+  bool AllowRTPassThrough();
 };
 
