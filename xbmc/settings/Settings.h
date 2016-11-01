@@ -311,6 +311,7 @@ public:
   static const std::string SETTING_AUDIOOUTPUT_STREAMNOISE;
   static const std::string SETTING_AUDIOOUTPUT_GUISOUNDMODE;
   static const std::string SETTING_AUDIOOUTPUT_PASSTHROUGH;
+  static const std::string SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH;
   static const std::string SETTING_AUDIOOUTPUT_PASSTHROUGHDEVICE;
   static const std::string SETTING_AUDIOOUTPUT_AC3PASSTHROUGH;
   static const std::string SETTING_AUDIOOUTPUT_AC3TRANSCODE;
