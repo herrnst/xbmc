@@ -26692,3 +26692,14 @@ msgstr ""
 msgctxt "#40866"
 msgid "What to report for a title whose picture changes shape partway through."
 msgstr ""
+
+# Additional strings for patch settings
+#: system/settings/settings.xml
+msgctxt "#49901"
+msgid "Allow passthrough for live/realtime streams"
+msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#49902"
+msgid "Enables passthrough for live/realtime streams like PVR TV channels (dangerous!)"
+msgstr ""
