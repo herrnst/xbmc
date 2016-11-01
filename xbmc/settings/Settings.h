@@ -414,6 +414,7 @@ public:
   static constexpr auto SETTING_AUDIOOUTPUT_GUISOUNDMODE = "audiooutput.guisoundmode";
   static constexpr auto SETTING_AUDIOOUTPUT_GUISOUNDVOLUME = "audiooutput.guisoundvolume";
   static constexpr auto SETTING_AUDIOOUTPUT_PASSTHROUGH = "audiooutput.passthrough";
+  static constexpr auto SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH = "audiooutput.allowrtpassthrough";
   static constexpr auto SETTING_AUDIOOUTPUT_PASSTHROUGHVOLUMECONTROL =
       "audiooutput.passthroughvolumecontrol";
   static constexpr auto SETTING_AUDIOOUTPUT_PASSTHROUGHDEVICE = "audiooutput.passthroughdevice";
