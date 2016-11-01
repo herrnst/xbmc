@@ -25968,3 +25968,14 @@ msgstr ""
 msgctxt "#40804"
 msgid "{0:.1f} dB"
 msgstr ""
+
+# Additional strings for patch settings
+#: system/settings/settings.xml
+msgctxt "#49901"
+msgid "Allow passthrough for live/realtime streams"
+msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#49902"
+msgid "Enables passthrough for live/realtime streams like PVR TV channels (dangerous!)"
+msgstr ""
