@@ -380,6 +380,7 @@ constexpr const char* CSettings::SETTING_AUDIOOUTPUT_STREAMNOISE;
 constexpr const char* CSettings::SETTING_AUDIOOUTPUT_GUISOUNDMODE;
 constexpr const char* CSettings::SETTING_AUDIOOUTPUT_GUISOUNDVOLUME;
 constexpr const char* CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGH;
+constexpr const char* CSettings::SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH;
 constexpr const char* CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGHDEVICE;
 constexpr const char* CSettings::SETTING_AUDIOOUTPUT_AC3PASSTHROUGH;
 constexpr const char* CSettings::SETTING_AUDIOOUTPUT_AC3TRANSCODE;
