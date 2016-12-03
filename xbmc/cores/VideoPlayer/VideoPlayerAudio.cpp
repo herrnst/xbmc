@@ -93,7 +93,7 @@ bool CVideoPlayerAudio::OpenStream(CDVDStreamInfo &hints)
 
   CLog::Log(LOGNOTICE, "Finding audio codec for: %i", hints.codec);
   bool allowpassthrough = !CSettings::GetInstance().GetBool(CSettings::SETTING_VIDEOPLAYER_USEDISPLAYASCLOCK);
-  if (hints.realtime)
+  if (!CSettings::GetInstance().GetBool(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH) && hints.realtime)
     allowpassthrough = false;
   CDVDAudioCodec* codec = CDVDFactoryCodec::CreateAudioCodec(hints, m_processInfo, allowpassthrough, m_processInfo.AllowDTSHDDecode());
   if(!codec)
@@ -580,7 +580,7 @@ bool CVideoPlayerAudio::SwitchCodecIfNeeded()
 {
   CLog::Log(LOGDEBUG, "CVideoPlayerAudio: Sample rate changed, checking for passthrough");
   bool allowpassthrough = !CSettings::GetInstance().GetBool(CSettings::SETTING_VIDEOPLAYER_USEDISPLAYASCLOCK);
-  if (m_streaminfo.realtime)
+  if (!CSettings::GetInstance().GetBool(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH) && m_streaminfo.realtime)
     allowpassthrough = false;
   CDVDAudioCodec *codec = CDVDFactoryCodec::CreateAudioCodec(m_streaminfo, m_processInfo, allowpassthrough, m_processInfo.AllowDTSHDDecode());
   if (!codec || codec->NeedPassthrough() == m_pAudioCodec->NeedPassthrough()) {

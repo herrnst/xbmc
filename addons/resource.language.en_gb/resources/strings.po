@@ -19787,3 +19787,13 @@ msgstr ""
 msgctxt "#39010"
 msgid "Select sort method"
 msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#39901"
+msgid "Force passthrough for live/realtime streams (dangerous!)"
+msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#39902"
+msgid "Enables passthrough for live/realtime streams like PVR TV channels. Enable at your own risk, expect problems and don't report issues!"
+msgstr ""
