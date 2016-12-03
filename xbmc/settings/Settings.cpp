@@ -364,6 +364,7 @@ const std::string CSettings::SETTING_AUDIOOUTPUT_DSPSETTINGS = "audiooutput.dsps
 const std::string CSettings::SETTING_AUDIOOUTPUT_DSPRESETDB = "audiooutput.dspresetdb";
 const std::string CSettings::SETTING_AUDIOOUTPUT_GUISOUNDMODE = "audiooutput.guisoundmode";
 const std::string CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGH = "audiooutput.passthrough";
+const std::string CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH = "audiooutput.forcertpassthrough";
 const std::string CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGHDEVICE = "audiooutput.passthroughdevice";
 const std::string CSettings::SETTING_AUDIOOUTPUT_AC3PASSTHROUGH = "audiooutput.ac3passthrough";
 const std::string CSettings::SETTING_AUDIOOUTPUT_AC3TRANSCODE = "audiooutput.ac3transcode";
