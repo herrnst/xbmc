@@ -220,7 +220,7 @@ bool CDVDInputStreamBluray::Open()
   else
   {
     m_rootPath = root;
-    if (!bd_open_files(m_bd, &m_rootPath, CBlurayCallback::dir_open, CBlurayCallback::file_open))
+    if (!bd_open_disc(m_bd, CURL::GetRedacted(root).c_str(), NULL))
     {
       CLog::Log(LOGERROR, "CDVDInputStreamBluray::Open - failed to open %s", CURL::GetRedacted(root).c_str());
       return false;
