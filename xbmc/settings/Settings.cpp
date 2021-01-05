@@ -964,6 +964,7 @@ void CSettings::InitializeISettingCallbacks()
 
   settingSet.clear();
   settingSet.insert(CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGH);
+  settingSet.insert(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH);
   settingSet.insert(CSettings::SETTING_LOOKANDFEEL_SKIN);
   settingSet.insert(CSettings::SETTING_LOOKANDFEEL_SKINSETTINGS);
   settingSet.insert(CSettings::SETTING_LOOKANDFEEL_FONT);
