@@ -22495,3 +22495,9 @@ msgstr ""
 msgctxt "#39902"
 msgid "Enables passthrough for live/realtime streams like PVR TV channels. Enable at your own risk, expect problems and don't report issues!"
 msgstr ""
+
+#. Text in confirm dialog when enabling setting "Force passthrough for live/realtime streams"
+#: xbmc/addons/AddonSystemSettings.cpp
+msgctxt "#39903"
+msgid "Passthrough is unsupported for live and/or realtime streams like PVR TV channels. While it may work fine in a few constellations, it can even fail hard and cause horrible problems or defects throughout all devices in your playback chain. Using this is totally unsupported. If you experience any issues, then this is a sign that it doesn't work in your setup. When asking for any support, the only answer will be \"disable this option\"! Enable at your own risk and will, and be prepared for problems which you won't get any support for! YOU HAVE BEEN WARNED!"
+msgstr ""
