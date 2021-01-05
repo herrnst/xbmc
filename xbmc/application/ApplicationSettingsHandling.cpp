@@ -48,6 +48,7 @@ void CApplicationSettingsHandling::RegisterSettings()
   settingsMgr->RegisterSettingsHandler(this);
 
   settingsMgr->RegisterCallback(this, {CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGH,
+                                       CSettings::SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH,
                                        CSettings::SETTING_LOOKANDFEEL_SKIN,
                                        CSettings::SETTING_LOOKANDFEEL_SKINSETTINGS,
                                        CSettings::SETTING_LOOKANDFEEL_FONT,
@@ -132,6 +133,10 @@ void CApplicationSettingsHandling::OnSettingChanged(const std::shared_ptr<const 
           CServiceBroker::GetWinSystem()->GetGfxContext().GetVideoResolution(), true);
   }
   else if (settingId == CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGH)
+  {
+    CServiceBroker::GetAppMessenger()->PostMsg(TMSG_MEDIA_RESTART);
+  }
+  else if (settingId == CSettings::SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH)
   {
     CServiceBroker::GetAppMessenger()->PostMsg(TMSG_MEDIA_RESTART);
   }
