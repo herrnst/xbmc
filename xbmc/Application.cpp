@@ -1070,6 +1070,17 @@ void CApplication::OnSettingChanged(const std::shared_ptr<const CSetting>& setti
   {
     CApplicationMessenger::GetInstance().PostMsg(TMSG_MEDIA_RESTART);
   }
+  else if (settingId == CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH)
+  {
+    // Request confirmation if "Force passthrough for live/realtime streams" is enabled
+    if (CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH)
+        && HELPERS::ShowYesNoDialogText(19098, 39903) != DialogResponse::YES)
+    {
+      CServiceBroker::GetSettingsComponent()->GetSettings()->SetBool(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH, false);
+    }
+
+    CApplicationMessenger::GetInstance().PostMsg(TMSG_MEDIA_RESTART);
+  }
   else if (StringUtils::EqualsNoCase(settingId, CSettings::SETTING_MUSICPLAYER_REPLAYGAINTYPE))
     m_replayGainSettings.iType = std::static_pointer_cast<const CSettingInt>(setting)->GetValue();
   else if (StringUtils::EqualsNoCase(settingId, CSettings::SETTING_MUSICPLAYER_REPLAYGAINPREAMP))
