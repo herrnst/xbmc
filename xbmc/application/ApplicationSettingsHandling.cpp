@@ -19,6 +19,7 @@
 #include "application/ApplicationVolumeHandling.h"
 #include "guilib/GUIComponent.h"
 #include "guilib/GUIWindowManager.h"
+#include "messaging/helpers/DialogHelper.h"
 #include "messaging/ApplicationMessenger.h"
 #include "settings/Settings.h"
 #include "settings/SettingsComponent.h"
@@ -47,6 +48,7 @@ void CApplicationSettingsHandling::RegisterSettings()
   settingsMgr->RegisterSettingsHandler(this);
 
   settingsMgr->RegisterCallback(this, {CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGH,
+                                       CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH,
                                        CSettings::SETTING_LOOKANDFEEL_SKIN,
                                        CSettings::SETTING_LOOKANDFEEL_SKINSETTINGS,
                                        CSettings::SETTING_LOOKANDFEEL_FONT,
@@ -105,6 +107,8 @@ void CApplicationSettingsHandling::UnregisterSettings()
 
 void CApplicationSettingsHandling::OnSettingChanged(const std::shared_ptr<const CSetting>& setting)
 {
+  using namespace KODI::MESSAGING::HELPERS;
+
   if (!setting)
     return;
 
@@ -131,6 +135,17 @@ void CApplicationSettingsHandling::OnSettingChanged(const std::shared_ptr<const 
   }
   else if (settingId == CSettings::SETTING_AUDIOOUTPUT_PASSTHROUGH)
   {
+    CServiceBroker::GetAppMessenger()->PostMsg(TMSG_MEDIA_RESTART);
+  }
+  else if (settingId == CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH)
+  {
+    // Request confirmation if "Force passthrough for live/realtime streams" is enabled
+    if (CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH)
+        && ShowYesNoDialogText(19098, 39903) != DialogResponse::CHOICE_YES)
+    {
+      CServiceBroker::GetSettingsComponent()->GetSettings()->SetBool(CSettings::SETTING_AUDIOOUTPUT_FORCERTPASSTHROUGH, false);
+    }
+
     CServiceBroker::GetAppMessenger()->PostMsg(TMSG_MEDIA_RESTART);
   }
 }
