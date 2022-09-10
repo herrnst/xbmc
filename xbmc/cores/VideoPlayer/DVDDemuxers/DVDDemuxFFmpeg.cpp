@@ -1697,6 +1697,22 @@ CDemuxStream* CDVDDemuxFFmpeg::AddStream(int streamIdx)
           if (side_data && size)
           {
             st->dovi = *reinterpret_cast<AVDOVIDecoderConfigurationRecord*>(side_data);
+
+            if (m_bMatroska)
+            {
+              // Matroska specific block config
+              if (st->dovi.dv_profile > 7)
+                pStream->codecpar->codec_tag = MKBETAG('d', 'v', 'v', 'C');
+              else
+                pStream->codecpar->codec_tag = MKBETAG('d', 'v', 'c', 'C');
+            }
+            else if (pStream->codecpar->codec_id == AV_CODEC_ID_HEVC &&
+                     pStream->codecpar->codec_tag != MKTAG('d', 'v', 'h', 'e') &&
+                     pStream->codecpar->codec_tag != MKTAG('d', 'v', 'h', '1'))
+            {
+              // Fallback for a hint to the decoder that the container indicates DOVI
+              pStream->codecpar->codec_tag = MKTAG('d', 'v', 'h', 'e');
+            }
           }
         }
 
