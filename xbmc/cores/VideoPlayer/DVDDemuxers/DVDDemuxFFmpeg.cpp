@@ -58,6 +58,7 @@ extern "C"
 
 extern "C" {
 #include <libavutil/dict.h>
+#include <libavutil/dovi_meta.h>
 #include <libavutil/opt.h>
 }
 
@@ -1688,6 +1689,28 @@ CDemuxStream* CDVDDemuxFFmpeg::AddStream(int streamIdx)
         // https://github.com/FFmpeg/FFmpeg/blob/release/5.0/doc/APIchanges
         size_t size = 0;
         uint8_t* side_data = nullptr;
+
+        side_data = av_stream_get_side_data(pStream, AV_PKT_DATA_DOVI_CONF, &size);
+        if (side_data && size)
+        {
+          AVDOVIDecoderConfigurationRecord *dovi = reinterpret_cast<AVDOVIDecoderConfigurationRecord*>(side_data);
+
+          if (m_bMatroska)
+          {
+            // Matroska specific block config
+            if (dovi->dv_profile > 7)
+              pStream->codecpar->codec_tag = MKBETAG('d', 'v', 'v', 'C');
+            else
+              pStream->codecpar->codec_tag = MKBETAG('d', 'v', 'c', 'C');
+          }
+          else if (pStream->codecpar->codec_id == AV_CODEC_ID_HEVC &&
+                   pStream->codecpar->codec_tag != MKTAG('d', 'v', 'h', 'e') &&
+                   pStream->codecpar->codec_tag != MKTAG('d', 'v', 'h', '1'))
+          {
+            // Fallback for a hint to the decoder that the container indicates DOVI
+            pStream->codecpar->codec_tag = MKTAG('d', 'v', 'h', 'e');
+          }
+        }
 
         side_data = av_stream_get_side_data(pStream, AV_PKT_DATA_MASTERING_DISPLAY_METADATA, &size);
         if (side_data && size)
