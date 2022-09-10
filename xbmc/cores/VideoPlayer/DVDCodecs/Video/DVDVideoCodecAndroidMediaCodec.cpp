@@ -502,7 +502,9 @@ bool CDVDVideoCodecAndroidMediaCodec::Open(CDVDStreamInfo &hints, CDVDCodecOptio
       const bool convertDovi =
           (settings) ? settings->GetBool(CSettings::SETTING_VIDEOPLAYER_CONVERTDOVI) : false;
 
-      bool isDvhe = (m_hints.codec_tag == MKTAG('d', 'v', 'h', 'e'));
+      bool isDvhe = (m_hints.codec_tag == MKTAG('d', 'v', 'h', 'e') ||
+                     m_hints.codec_tag == MKBETAG('d', 'v', 'c', 'C') ||
+                     m_hints.codec_tag == MKBETAG('d', 'v', 'v', 'C'));
       bool isDvh1 = (m_hints.codec_tag == MKTAG('d', 'v', 'h', '1'));
 
       // some files don't have dvhe or dvh1 tag set up but have Dolby Vision side data
