@@ -23,6 +23,7 @@
 #include "filesystem/LibraryPaths.h"
 #include "guilib/GUIComponent.h"
 #include "guilib/GUIWindowManager.h"
+#include "messaging/helpers/DialogHelper.h"
 #include "messaging/ApplicationMessenger.h"
 #include "settings/Settings.h"
 #include "settings/SettingsComponent.h"
@@ -143,6 +144,8 @@ void CApplicationSettingsHandling::UnregisterSettings()
 
 void CApplicationSettingsHandling::OnSettingChanged(const std::shared_ptr<const CSetting>& setting)
 {
+  using namespace KODI::MESSAGING::HELPERS;
+
   if (!setting)
     return;
 
@@ -160,6 +163,13 @@ void CApplicationSettingsHandling::OnSettingChanged(const std::shared_ptr<const 
   }
   else if (settingId == CSettings::SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH)
   {
+    // Request confirmation if "Allow passthrough for live/realtime streams" is enabled
+    if (CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH)
+        && ShowYesNoDialogText(19098, 49903) != DialogResponse::CHOICE_YES)
+    {
+      CServiceBroker::GetSettingsComponent()->GetSettings()->SetBool(CSettings::SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH, false);
+    }
+
     CServiceBroker::GetAppMessenger()->PostMsg(TMSG_MEDIA_RESTART);
   }
   else if (settingId == CSettings::SETTING_VIDEOLIBRARY_FLATTENVERSIONS)
