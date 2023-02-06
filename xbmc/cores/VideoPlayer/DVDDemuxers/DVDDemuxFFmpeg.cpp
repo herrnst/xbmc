@@ -2313,8 +2313,7 @@ void CDVDDemuxFFmpeg::ParsePacket(AVPacket* pkt)
         parser->second->m_parserCtx->parser &&
         !st->codecpar->extradata)
     {
-      auto [retExtraData, i] =
-          GetPacketExtradata(pkt, parser->second->m_parserCtx, parser->second->m_codecCtx);
+      auto [retExtraData, i] = GetPacketExtradata(pkt, st->codecpar);
       if (i > 0)
       {
         st->codecpar->extradata_size = i;
