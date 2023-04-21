@@ -42,7 +42,8 @@ bool CDVDOverlayCodecSSA::Open(CDVDStreamInfo& hints, CDVDCodecOptions& options)
 
   Dispose();
 
-  return m_libass->DecodeHeader(static_cast<char*>(hints.extradata), hints.extrasize);
+  return m_libass->DecodeHeader(reinterpret_cast<char*>(hints.extradata.GetData()),
+                                hints.extradata.GetSize());
 }
 
 void CDVDOverlayCodecSSA::Dispose()
