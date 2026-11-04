@@ -130,5 +130,6 @@ protected:
 
 private:
   inline bool AllowRTPassThrough();
+  inline bool AllowSyncResample();
 };
 
