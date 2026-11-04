@@ -25985,3 +25985,12 @@ msgstr ""
 msgctxt "#49903"
 msgid "Live/realtime passthrough (e.g. PVR) may cause audio/video issues, particularly with poor reception. It is unsupported. Use at your own risk. No support provided. Enable anyway?"
 msgstr ""
+
+msgctxt "#49904"
+msgid "Allow resampling audio sync"
+msgstr ""
+
+#: system/settings/settings.xml
+msgctxt "#49905"
+msgid "Enables automatic pitchadjusting resampling to resync audio/video"
+msgstr ""
