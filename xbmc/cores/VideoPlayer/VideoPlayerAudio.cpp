@@ -84,6 +84,11 @@ inline bool CVideoPlayerAudio::AllowRTPassThrough()
   return CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_AUDIOOUTPUT_ALLOWRTPASSTHROUGH);
 }
 
+inline bool CVideoPlayerAudio::AllowSyncResample()
+{
+  return CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_AUDIOOUTPUT_ALLOWSYNCRESAMPLE);
+}
+
 bool CVideoPlayerAudio::OpenStream(CDVDStreamInfo hints)
 {
   CLog::Log(LOGINFO, "Finding audio codec for: {}", hints.codec);
@@ -143,7 +148,7 @@ void CVideoPlayerAudio::OpenStream(CDVDStreamInfo& hints, std::unique_ptr<CDVDAu
   m_synctype = SYNC_DISCON;
   if (CServiceBroker::GetSettingsComponent()->GetSettings()->GetBool(CSettings::SETTING_VIDEOPLAYER_USEDISPLAYASCLOCK))
     m_synctype = SYNC_RESAMPLE;
-  else if (m_processInfo.IsRealtimeStream())
+  else if (m_processInfo.IsRealtimeStream() && AllowSyncResample())
     m_synctype = SYNC_RESAMPLE;
 
   if (m_synctype == SYNC_DISCON)
@@ -493,7 +498,7 @@ bool CVideoPlayerAudio::ProcessDecoderOutput(DVDAudioFrame &audioframe)
 
     // if stream switches to realtime, disable pass through
     // or switch to resample when realtime passthrough is not allowed
-    if (m_processInfo.IsRealtimeStream() && m_synctype != SYNC_RESAMPLE && !AllowRTPassThrough())
+    if (m_processInfo.IsRealtimeStream() && m_synctype != SYNC_RESAMPLE && !AllowRTPassThrough() && AllowSyncResample())
     {
       m_synctype = SYNC_RESAMPLE;
       if (SwitchCodecIfNeeded())

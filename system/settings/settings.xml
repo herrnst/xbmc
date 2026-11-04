@@ -3510,6 +3510,11 @@
           </constraints>
           <control type="list" format="string" />
         </setting>
+        <setting id="audiooutput.allowsyncresample" type="boolean" label="49904" help="49905">
+          <level>3</level>
+          <default>true</default>
+          <control type="toggle" />
+        </setting>
         <setting id="audiooutput.atempothreshold" type="integer" label="13517" help="13518">
           <level>3</level>
           <default>2</default> <!-- 2% -->
