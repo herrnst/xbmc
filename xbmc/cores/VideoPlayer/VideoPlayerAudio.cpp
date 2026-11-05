@@ -498,13 +498,16 @@ bool CVideoPlayerAudio::ProcessDecoderOutput(DVDAudioFrame &audioframe)
 
     // if stream switches to realtime, disable pass through
     // or switch to resample when realtime passthrough is not allowed
-    if (m_processInfo.IsRealtimeStream() && m_synctype != SYNC_RESAMPLE && !AllowRTPassThrough() && AllowSyncResample())
+    if (m_processInfo.IsRealtimeStream() && m_synctype != SYNC_RESAMPLE && !AllowRTPassThrough())
     {
-      m_synctype = SYNC_RESAMPLE;
-      if (SwitchCodecIfNeeded())
+      if (AllowSyncResample())
       {
-        audioframe.nb_frames = 0;
-        return false;
+        m_synctype = SYNC_RESAMPLE;
+        if (SwitchCodecIfNeeded())
+        {
+          audioframe.nb_frames = 0;
+          return false;
+        }
       }
     }
 
@@ -604,7 +607,7 @@ bool CVideoPlayerAudio::ProcessDecoderOutput(DVDAudioFrame &audioframe)
 
 void CVideoPlayerAudio::SetSyncType(bool passthrough)
 {
-  if (passthrough && m_synctype == SYNC_RESAMPLE)
+  if ((passthrough && m_synctype == SYNC_RESAMPLE) || !AllowSyncResample())
     m_synctype = SYNC_DISCON;
 
   //if SetMaxSpeedAdjust returns false, it means no video is played and we need to use clock feedback
